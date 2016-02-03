@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+    <joined-subclass name="br.com.bean.Classes_Mapeamentos.Dependente" extends="br.com.bean.Classes_Mapeamentos.Pessoa">
+    
+        <key column="pessoaId"/>
+        
+        <property name="grauParentesco" type="integer">
+            <column name="GrauParentesco"></column>
+        </property>
+              
+        <many-to-one  class="br.com.bean.Classes_Mapeamentos.Aluno" insert="false" update="false" column="pessoaId" cascade="none" name="aluno"/>
+        
+    </joined-subclass>
+</hibernate-mapping>

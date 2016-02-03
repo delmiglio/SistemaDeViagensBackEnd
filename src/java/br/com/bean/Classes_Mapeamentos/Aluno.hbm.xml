@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+    <joined-subclass name="br.com.bean.Classes_Mapeamentos.Aluno" extends="br.com.bean.Classes_Mapeamentos.Pessoa">
+  
+        <key column="pessoaId" />
+      
+        <property name="curso" type="string" not-null="true">
+            <column name="Curso" length="2000"/>
+        </property>
+      
+        <property name="numeroCarteiraFaculdade" type="string" not-null="true">
+            <column name="NumeroCarteiraFaculdade" length="50"/>
+        </property>
+      
+        <property name="semestre" type="integer" not-null="true">
+            <column name="semestre"/>
+        </property>
+        
+            
+        <many-to-one class="br.com.bean.Classes_Mapeamentos.Turma"  name="turma" cascade="none" column="turmaId"/>
+        
+        <set name="pagamentos">
+            <key column="pessoaId"/>              
+            <one-to-many class="br.com.bean.Classes_Mapeamentos.Pagamento"/>
+        </set>
+        
+        <set name="dependentes">
+            <key column="pessoaId"/>              
+            <one-to-many class="br.com.bean.Classes_Mapeamentos.Dependente"/>
+        </set>
+       
+    </joined-subclass>
+</hibernate-mapping>
